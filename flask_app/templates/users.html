@@ -1,0 +1,45 @@
+{% extends "index.html" %}
+{% block content %}
+
+<div class="card bg-light">
+    <h3 class="card-header bg-secondary">All Users</h3>
+    <div class="card-body">
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th>ID:</th>
+                    <th>First Name:</th>
+                    <th>Last Name:</th>
+                    <th>Email:</th>
+                    <th>Created At:</th>
+                    <!-- On the Read (All) page add an Actions column -->
+                    <th>Action</th>
+
+                </tr>
+            </thead>
+            <tbody>
+                {% for x in all_users %}
+                <tr>
+                    <td>{{ x.id }}</td>
+                    <td>{{ x.first_name }}</td>
+                    <td>{{ x.last_name }}</td>
+                    <td>{{ x.email }}</td>
+                    <td>{{ x.created_at }}</td>
+                    <td>
+                        <!-- Show link will render the Users Read (One) page -->
+                        <a href="/users/{{x.id}}">View |</a>
+                        <!-- Edit link will render the Users Edit page -->
+                        <a href="/users/{{x.id}}/edit">Edit |</a>
+                        <!-- Delete link will delete the User from the database, and redirect to the Read (All) page -->
+                        <a href="/users/{{x.id}}/delete">Delete</a>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        <a href="/users/new" class="btn">Add User</a>
+    </div>
+</div>
+
+
+{% endblock %}
